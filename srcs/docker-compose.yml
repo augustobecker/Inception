@@ -1,6 +1,34 @@
 version: '3.8'
 name: inception
 
+# Explaning
+
+# Esse docker-compose.yml vai ser usado para orquestrar a execução dos containers
+# Ao ser executado, vai rodar o dockerfile de cada um dos serviços
+# o path para o dockerfile é o context para o build
+# Sendo assim, o dockerfile do MariaDB por exemplo está em requirements/mariadb
+# Os args são alguns valores que o dockerfile espera receber como variável
+# O restart always garante que se por algum motivo a execução do container falhe, ele seja restartado
+# Volumes define onde vão ser persistidos os dados do container
+# E a Network, em modo Bridge, seria uma rede interna em que os containers poderiam se comunicar dentro do mesmo host.
+
+# Quando você cria uma rede Docker no modo bridge, o Docker cria uma interface de rede virtual dentro do host e conecta todos os contêineres que estão na mesma rede a essa interface.
+# Isso permite que os contêineres se comuniquem entre si usando endereços IP internos, enquanto permanecem isolados do restante da rede do host.
+
+# Dentro de cada serviço (mariadb, wordpress e nginx),
+# Os volumes estão sendo definidos para especificar onde os dados dos contêineres devem ser armazenados no host.
+# Um volume chamado mariadb será montado em /var/lib/mysql dentro do contêiner MariaDB, por exemplo.
+
+# Enquanto na seção volumes, há definições adicionais para os mesmos volumes (mariadb e wordpress).
+# Sendo definido na máquina host onde vai haver a persistência desses dados.
+# Um volume externo aos containers
+
+# o: bind: Isso indica que estamos utilizando a opção de montagem de bind, 
+# que é uma forma de montar um diretório específico do sistema de arquivos do host diretamente no contêiner.
+
+#type: none: Indica que não estamos usando um driver de volume específico. 
+# Em vez disso, estamos configurando manualmente a montagem usando o bind.
+
 services:
   mariadb:
     container_name: mariadb
