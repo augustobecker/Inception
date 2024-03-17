@@ -9,6 +9,7 @@ services:
         - WORDPRESS_DATABASE
         - WORDPRESS_USER
         - WORDPRESS_PASSWORD
+    restart: always
     networks:
       - inception
     volumes:
@@ -22,6 +23,7 @@ services:
         - WORDPRESS_DATABASE
         - WORDPRESS_USER
         - WORDPRESS_PASSWORD
+    restart: always
     networks:
       - inception
     volumes:
@@ -33,6 +35,7 @@ services:
     container_name: nginx
     build:
       context: requirements/nginx
+    restart: always
     ports:
       - 443:443
     networks:
