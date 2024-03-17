@@ -8,6 +8,11 @@ name: inception
 # o path para o dockerfile é o context para o build
 # Sendo assim, o dockerfile do MariaDB por exemplo está em requirements/mariadb
 # Os args são alguns valores que o dockerfile espera receber como variável
+
+# Caso tenha algum .env na mesma pasta, como é o caso, essas variáveis são convertidas nesses valores,
+# mas também seria possível passar esses valores ao rodar o build
+# ex: docker-compose up --build --build-arg WORDPRESS_DATABASE=mydb --build-arg ...
+
 # O restart always garante que se por algum motivo a execução do container falhe, ele seja restartado
 # Volumes define onde vão ser persistidos os dados do container
 # E a Network, em modo Bridge, seria uma rede interna em que os containers poderiam se comunicar dentro do mesmo host.
