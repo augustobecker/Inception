@@ -1,5 +1,4 @@
-version: '3.8'
-name: inception
+version: '3'
 
 services:
   mariadb:
@@ -8,9 +7,9 @@ services:
     build: 
       context: requirements/mariadb
       args:
-        - WORDPRESS_DATABASE
-        - WORDPRESS_USER
-        - WORDPRESS_PASSWORD
+        - WORDPRESS_DATABASE=$(WORDPRESS_DATABASE)
+        - WORDPRESS_USER=$(WORDPRESS_USER)
+        - WORDPRESS_PASSWORD=$(WORDPRESS_PASSWORD)
     restart: always
     networks:
       - inception
@@ -23,9 +22,9 @@ services:
     build:
       context: requirements/wordpress
       args:
-        - WORDPRESS_DATABASE
-        - WORDPRESS_USER
-        - WORDPRESS_PASSWORD
+        - WORDPRESS_DATABASE=$(WORDPRESS_DATABASE)
+        - WORDPRESS_USER=$(WORDPRESS_USER)
+        - WORDPRESS_PASSWORD=$(WORDPRESS_PASSWORD)
     restart: always
     networks:
       - inception
@@ -51,7 +50,6 @@ services:
 
 networks:
   inception:
-    name: inception
     driver: bridge
 
 volumes:

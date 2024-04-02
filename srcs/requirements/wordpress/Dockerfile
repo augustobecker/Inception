@@ -1,5 +1,9 @@
 FROM debian:oldstable
 
+ARG WORDPRESS_DATABASE
+ARG WORDPRESS_USER
+ARG WORDPRESS_PASSWORD
+
 WORKDIR /var/www/html/
 
 RUN apt update -y && apt upgrade && apt install -y \

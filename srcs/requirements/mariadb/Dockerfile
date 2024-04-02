@@ -1,8 +1,8 @@
 FROM debian:oldstable
 
-ARG WORDPRESS_DB_NAME
-ARG WORDPRESS_DB_USER
-ARG WORDPRESS_DB_PASSWORD
+ARG WORDPRESS_DATABASE
+ARG WORDPRESS_USER
+ARG WORDPRESS_PASSWORD
 
 RUN apt update -y && apt upgrade && apt install mariadb-server -y
 
@@ -18,9 +18,9 @@ skip-bind-address" >> /etc/mysql/my.cnf
 # Portanto, no seu Dockerfile, os comandos RUN service mariadb start e RUN service mariadb stop não são executados diretamente no contêiner em execução, mas sim durante o processo de construção da imagem Docker.
 RUN service mariadb start && \
 	mariadb -u root -e \
-	"CREATE DATABASE IF NOT EXISTS $WORDPRESS_DB_NAME; \
-	CREATE USER '$WORDPRESS_DB_USER'@'%' identified by '$WORDPRESS_DB_PASSWORD'; \
-	GRANT ALL ON $WORDPRESS_DB_NAME.* TO '$WORDPRESS_DB_USER'@'%' IDENTIFIED BY '$WORDPRESS_DB_PASSWORD'; \
+	"CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE; \
+	CREATE USER '$WORDPRESS_USER'@'%' identified by '$WORDPRESS_PASSWORD'; \
+	GRANT ALL ON $WORDPRESS_DATABASE.* TO '$WORDPRESS_USER'@'%' IDENTIFIED BY '$WORDPRESS_PASSWORD'; \
 	FLUSH PRIVILEGES;" && \
 	service mariadb stop
 
