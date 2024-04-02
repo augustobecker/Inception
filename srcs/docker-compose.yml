@@ -38,6 +38,10 @@ services:
     image: nginx:1.0
     build:
       context: requirements/nginx
+    args:
+      - CERTS_PATH=${CERTS_PATH}
+      - CERTS_KEY=${CERTS_KEY}
+      - WORDPRESS_URL=${WORDPRESS_URL}
     restart: always
     ports:
       - 443:443

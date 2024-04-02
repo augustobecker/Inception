@@ -6,7 +6,7 @@ ARG WORDPRESS_PASSWORD
 
 WORKDIR /var/www/html/
 
-RUN apt update -y && apt upgrade && apt install -y \
+RUN apt update -y && apt upgrade -y && apt install -y \
 	php-fpm \
 	php-mysql \
 	mariadb-client \
@@ -30,7 +30,6 @@ RUN cp wp-config-sample.php wp-config.php && \
 
 RUN mkdir -p /run/php
 
-# Cria um link simbólico para usar o comando php-fpm independente de qual seja sua versão instalada
 RUN ln -s $(find /usr/sbin -name 'php-fpm*') /usr/bin/php-fpm
 
 CMD ["php-fpm", "-F"]
