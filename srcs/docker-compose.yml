@@ -7,9 +7,9 @@ services:
     build: 
       context: requirements/mariadb
       args:
-        - WORDPRESS_DATABASE=$(WORDPRESS_DATABASE)
-        - WORDPRESS_USER=$(WORDPRESS_USER)
-        - WORDPRESS_PASSWORD=$(WORDPRESS_PASSWORD)
+        - WORDPRESS_DATABASE=${WORDPRESS_DATABASE}
+        - WORDPRESS_USER=${WORDPRESS_USER}
+        - WORDPRESS_PASSWORD=${WORDPRESS_PASSWORD}
     restart: always
     networks:
       - inception
@@ -22,9 +22,9 @@ services:
     build:
       context: requirements/wordpress
       args:
-        - WORDPRESS_DATABASE=$(WORDPRESS_DATABASE)
-        - WORDPRESS_USER=$(WORDPRESS_USER)
-        - WORDPRESS_PASSWORD=$(WORDPRESS_PASSWORD)
+        - WORDPRESS_DATABASE=${WORDPRESS_DATABASE}
+        - WORDPRESS_USER=${WORDPRESS_USER}
+        - WORDPRESS_PASSWORD=${WORDPRESS_PASSWORD}
     restart: always
     networks:
       - inception
