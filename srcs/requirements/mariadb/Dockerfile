@@ -1,5 +1,6 @@
 FROM debian:oldstable
 
+ARG WORDPRESS_ROOT_PASSWORD
 ARG WORDPRESS_DATABASE
 ARG WORDPRESS_USER
 ARG WORDPRESS_PASSWORD
@@ -11,11 +12,14 @@ skip-networking=0 \n\
 skip-bind-address" >> /etc/mysql/my.cnf
 
 RUN service mariadb start && \
-	mariadb -u root -e \
-	"CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE; \
-	CREATE USER '$WORDPRESS_USER'@'%' identified by '$WORDPRESS_PASSWORD'; \
-	GRANT ALL ON $WORDPRESS_DATABASE.* TO '$WORDPRESS_USER'@'%' IDENTIFIED BY '$WORDPRESS_PASSWORD'; \
-	FLUSH PRIVILEGES;" && \
-	service mariadb stop
+    mariadb -u root -e \
+    "CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE; \
+    CREATE USER '$WORDPRESS_USER'@'%' identified by '$WORDPRESS_PASSWORD'; \
+    GRANT ALL ON $WORDPRESS_DATABASE.* TO '$WORDPRESS_USER'@'%' IDENTIFIED BY '$WORDPRESS_PASSWORD'; \
+    CREATE USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
+    GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$WORDPRESS_ROOT_PASSWORD' WITH GRANT OPTION; \
+    FLUSH PRIVILEGES;" && \
+    service mariadb stop
 
+CMD ["mysqld_safe"]
 CMD ["mysqld_safe"]
