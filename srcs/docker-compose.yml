@@ -40,7 +40,6 @@ services:
     build:
       context: requirements/nginx
       args:
-        - WORDPRESS_URL=${WORDPRESS_URL}
         - CERTS_PATH=${CERTS_PATH}
         - CERTS_KEY=${CERTS_KEY}
     restart: always
