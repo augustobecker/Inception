@@ -11,7 +11,10 @@ RUN echo "[mysqld] \n\
 skip-networking=0 \n\
 skip-bind-address" >> /etc/mysql/my.cnf
 
-RUN service mariadb start && \
+RUN if [ -f backup.sql ]; then \
+        mysql -uroot -p$WORDPRESS_ROOT_PASSWORD $WORDPRESS_DATABASE < backup.sql; \
+    fi && \
+    service mariadb start && \
     mariadb -u root -e \
     "CREATE DATABASE IF NOT EXISTS $WORDPRESS_DATABASE; \
     CREATE USER '$WORDPRESS_USER'@'%' identified by '$WORDPRESS_PASSWORD'; \
@@ -21,5 +24,4 @@ RUN service mariadb start && \
     FLUSH PRIVILEGES;" && \
     service mariadb stop
 
-CMD ["mysqld_safe"]
 CMD ["mysqld_safe"]
