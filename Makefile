@@ -1,4 +1,4 @@
-all: set_host set_env
+all: set_host
 	@ sudo mkdir -p /home/acesar-l/data/mysql
 	@ docker volume create --name mariadb_volume --opt type=none --opt device=/home/acesar-l/data/mysql --opt o=bind
 	@ sudo mkdir -p /home/acesar-l/data/wordpress
@@ -7,9 +7,6 @@ all: set_host set_env
 
 set_host:
 	@ sudo grep -q acesar-l /etc/hosts || sudo sed -i "3i127.0.0.1\tacesar-l.42.fr" /etc/hosts
-
-set_env:
-	@ export $(cat .env | xargs)
 
 up:
 	@ sudo docker-compose -f ./srcs/docker-compose.yml up --build --detach
@@ -22,4 +19,4 @@ fclean: down
 	@ docker volume rm mariadb_volume wordpress_volume
 	@ sudo rm -fr /home/acesar-l/data
 
-.PHONY: all set_host set_env up down fclean
+.PHONY: all set_host up down fclean
