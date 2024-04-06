@@ -62,7 +62,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/acesar-l/data/mariadb
+      device: /home/acesar-l/data/mysql
   wordpress:
     driver_opts:
       o: bind
