@@ -28,6 +28,14 @@ RUN cp wp-config-sample.php wp-config.php && \
 	sed -i "s/password_here/$WORDPRESS_PASSWORD/g" wp-config.php && \
 	sed -i "s/localhost/mariadb/g" wp-config.php
 
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && \
+    mv wp-cli.phar /usr/local/bin/wp
+
+RUN wp core update --allow-root
+
+RUN wp plugin update --all --allow-root
+
 RUN mkdir -p /run/php
 
 RUN ln -s $(find /usr/sbin -name 'php-fpm*') /usr/bin/php-fpm
