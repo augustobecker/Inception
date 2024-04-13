@@ -4,6 +4,8 @@ Set up a small infrastructure composed of different services under specific rule
 
 ![image](https://github.com/augustobecker/Inception/assets/81205527/2d286251-f44a-4923-83dd-fcefd72d630f)
 
+![image](https://github.com/augustobecker/Inception/assets/81205527/6d85e776-73ec-4a80-9830-fdb72ab652a5)
+
 <h1 align="center">  C Piscine @ 42sp </h1>
 <p align="center">:information_source: 42saopaulo's C bootcamp, a four week long trial period.
 
