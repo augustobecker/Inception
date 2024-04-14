@@ -4,7 +4,7 @@
 
 <p align="center"><a href="https://www.42sp.org.br/" target="_blank"><img src="https://img.shields.io/static/v1?label=&message=SP&color=000&style=for-the-badge&logo=42""></a></p>
 
-<p align="center">  <a href="https://github.com/augustobecker/Inception" target="_blank"><img alt="Inception" src="https://user-images.githubusercontent.com/81205527/210457725-477080a7-1a97-4968-9621-35c3e747c22b.png"> </a></p>
+<p align="center">  <a href="https://github.com/augustobecker/Inception" target="_blank"><img alt="Inception" src="https://github.com/augustobecker/Inception/assets/81205527/c17de729-cff5-43bb-acf8-bb65371cdc15"> </a></p>
 
 <p align="center"> 100/100 ✅ </p>
 
